@@ -1,0 +1,34 @@
+/*
+.slideContent ul, ul li  {
+  font-size: 1em;
+}
+
+.slideContent p {
+  font-size: 1em;
+}
+.small-code pre code { 
+  font-size: 1em;
+}*/
+.reveal code {
+  color: #33658a;
+}
+.small {
+  font-size:0.75em;
+}
+.reveal .slideContent ul, p, ul li  {
+  font-size: 1em;
+}
+.slideContent ul li p  {
+  font-size: 1em;
+}
+.reveal ul code {
+  font-size: 1em;
+}
+.small-code pre code { 
+  font-size: 1.1em;
+}
+.footer {
+    color: black; background: #E8E8E8;
+    position: fixed; top: 90%;
+    text-align:center; width:100%;
+}
