@@ -307,10 +307,15 @@ f()
 
 
 
-Resources
+Thanks
 ===========================================
 
+## Resources
+
 - Advanced R at [http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)
+- this talk at [https://github.com/bweigel/BRUG_Closure](https://github.com/bweigel/BRUG_Closure)
+
+
 Lexical vs dynamic scoping 
 ===========================================
 class: small-code
