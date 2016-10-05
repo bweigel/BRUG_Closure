@@ -13,6 +13,14 @@ height: 1080
 
 
 
+Setup
+=======================================================
+class: large-list
+
+- Introduction
+- some examples
+- pitfalls / pros and cons
+
 Introduction 
 =======================================================
 class: small-code
@@ -401,14 +409,14 @@ print(RES)
 
 ```
 $par
-[1] 352.51577  12.44359
+[1] 346.88825  12.47649
 
 $value
-[1] 0.1712602
+[1] 0.1222864
 
 $counts
 function gradient 
-      67       NA 
+      71       NA 
 
 $convergence
 [1] 0

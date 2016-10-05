@@ -30,6 +30,11 @@
 .smallest-code pre code { 
   font-size: 0.75em;
 }
+.large-list ul li { 
+  font-size: 1.5em;
+  margin: 0 10px;
+  line-height: 3em;
+}
 .footer {
     color: black; background: #E8E8E8;
     position: fixed; top: 90%;
