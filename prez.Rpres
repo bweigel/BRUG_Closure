@@ -11,6 +11,10 @@ height: 1080
 ## **B**erlin**RU**ser**G**roup #13: HypoSteelClosure
 ### Hypoport, Klosterstraße 71, Berlin
 
+```{r echo=F}
+knitr::opts_chunk$set(fig.height=4, fig.align = 'center')
+```
+
 Introduction 
 =======================================================
 class: small-code
@@ -132,7 +136,32 @@ a()
 
 Example
 ========================================================
-#### #3 Test
+class:small-code
+#### #3 Aggregate-Barplot
+
+- creates barplots from aggregated data on the fly
+- no need to store the aggregated dataframe in some `*tmp*` varbiable
+
+```{r fig.height=4}
+barplot0 <- function(...){
+  arg <- eval(substitute(alist(...)))
+  LAB <- arg[[1]]
+  fun <- arg[[3]]
+  df <- aggregate(...)
+
+    function(...){
+    barplot(height = df[,2], names.arg = as.character(df[,1]),  xlab = LAB[[3]], ylab=LAB[[2]], main=paste(fun,"(",deparse(LAB),")", sep=""), ...)
+    }
+  
+}
+```
+
+***
+
+```{r fig.height=4, fig.align='center'}
+barplot0(mpg ~ cyl, mtcars, min)()
+barplot0(am ~ gear, mtcars, mean)(col="red")
+```
 
 
 
@@ -204,6 +233,54 @@ Thanks
 
 - Advanced R at [http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)
 - this talk at [https://github.com/bweigel/BRUG_Closure](https://github.com/bweigel/BRUG_Closure)
+
+
+Further Examples
+===========================================
+class:smallest-code
+#### Optimization of non-linear functions
+
+```{r}
+## helper functions
+MM <- function(x, Km, V) x*V/(Km + x)
+RSS <- function(y, yhat) sum((y-yhat)^2)
+
+## simulate data
+S <- seq(0.1, 1000, length.out = 10)
+v <- MM(S, 350, 12.5) + rnorm(length(S), mean = 0, sd = 0.1)
+
+plot(S, v)
+```
+
+```{r}
+## optimization sceleton (takes x,y, a function to simulate new data and a function with the optimization parameter)
+f <- function(func, opt, x, y){
+  func <- eval(substitute(func))
+  opt <- eval(substitute(opt))
+  
+  function(par){
+    yhat <- do.call(func, append(list(x = x), par))
+    opt(y, yhat)
+  }
+  
+}
+```
+
+***
+
+```{r}
+## construct function to optimize 
+g <- f(MM, RSS, S, v)
+
+## optimize
+RES <- optim(c(300, 10), g)
+print(RES)
+## plot results
+x <- seq(0.1, 1000, length.out = 100)
+plot(S, v)
+lines(x, MM(x, RES$par[1], RES$par[2]), col="red")
+
+```
 
 
 Lexical vs dynamic scoping 

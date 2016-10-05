@@ -11,6 +11,8 @@ height: 1080
 ## **B**erlin**RU**ser**G**roup #13: HypoSteelClosure
 ### Hypoport, Klosterstraße 71, Berlin
 
+
+
 Introduction 
 =======================================================
 class: small-code
@@ -210,7 +212,41 @@ Error in a(): iterator empty!
 
 Example
 ========================================================
-#### #3 Test
+class:small-code
+#### #3 Aggregate-Barplot
+
+- creates barplots from aggregated data on the fly
+- no need to store the aggregated dataframe in some `*tmp*` varbiable
+
+
+```r
+barplot0 <- function(...){
+  arg <- eval(substitute(alist(...)))
+  LAB <- arg[[1]]
+  fun <- arg[[3]]
+  df <- aggregate(...)
+
+    function(...){
+    barplot(height = df[,2], names.arg = as.character(df[,1]),  xlab = LAB[[3]], ylab=LAB[[2]], main=paste(fun,"(",deparse(LAB),")", sep=""), ...)
+    }
+  
+}
+```
+
+***
+
+
+```r
+barplot0(mpg ~ cyl, mtcars, min)()
+```
+
+<img src="prez-figure/unnamed-chunk-11-1.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
+
+```r
+barplot0(am ~ gear, mtcars, mean)(col="red")
+```
+
+<img src="prez-figure/unnamed-chunk-11-2.png" title="plot of chunk unnamed-chunk-11" alt="plot of chunk unnamed-chunk-11" style="display: block; margin: auto;" />
 
 
 
@@ -314,6 +350,81 @@ Thanks
 
 - Advanced R at [http://adv-r.had.co.nz/](http://adv-r.had.co.nz/)
 - this talk at [https://github.com/bweigel/BRUG_Closure](https://github.com/bweigel/BRUG_Closure)
+
+
+Further Examples
+===========================================
+class:smallest-code
+#### Optimization of non-linear functions
+
+
+```r
+## helper functions
+MM <- function(x, Km, V) x*V/(Km + x)
+RSS <- function(y, yhat) sum((y-yhat)^2)
+
+## simulate data
+S <- seq(0.1, 1000, length.out = 10)
+v <- MM(S, 350, 12.5) + rnorm(length(S), mean = 0, sd = 0.1)
+
+plot(S, v)
+```
+
+<img src="prez-figure/unnamed-chunk-15-1.png" title="plot of chunk unnamed-chunk-15" alt="plot of chunk unnamed-chunk-15" style="display: block; margin: auto;" />
+
+
+```r
+## optimization sceleton (takes x,y, a function to simulate new data and a function with the optimization parameter)
+f <- function(func, opt, x, y){
+  func <- eval(substitute(func))
+  opt <- eval(substitute(opt))
+  
+  function(par){
+    yhat <- do.call(func, append(list(x = x), par))
+    opt(y, yhat)
+  }
+  
+}
+```
+
+***
+
+
+```r
+## construct function to optimize 
+g <- f(MM, RSS, S, v)
+
+## optimize
+RES <- optim(c(300, 10), g)
+print(RES)
+```
+
+```
+$par
+[1] 352.51577  12.44359
+
+$value
+[1] 0.1712602
+
+$counts
+function gradient 
+      67       NA 
+
+$convergence
+[1] 0
+
+$message
+NULL
+```
+
+```r
+## plot results
+x <- seq(0.1, 1000, length.out = 100)
+plot(S, v)
+lines(x, MM(x, RES$par[1], RES$par[2]), col="red")
+```
+
+<img src="prez-figure/unnamed-chunk-17-1.png" title="plot of chunk unnamed-chunk-17" alt="plot of chunk unnamed-chunk-17" style="display: block; margin: auto;" />
 
 
 Lexical vs dynamic scoping 

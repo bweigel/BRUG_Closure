@@ -27,6 +27,9 @@
 .small-code pre code { 
   font-size: 1.1em;
 }
+.smallest-code pre code { 
+  font-size: 0.75em;
+}
 .footer {
     color: black; background: #E8E8E8;
     position: fixed; top: 90%;
