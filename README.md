@@ -17,4 +17,9 @@ here you can find the slides to the short talk about closures in R that I gave a
 ### MOOCS & online learning
 
 - [Statistical Learning](https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/about) (also by Hastie & Tibshirani)
-- [Datacamp](https://www.datacamp.com/) 
+- [Datacamp](https://www.datacamp.com/) offers free interactive courses on R, Python etc.
+
+### Blogs
+
+- [R-Bloggers](https://www.r-bloggers.com/) accumulates and combines many resources/blogs on R
+- [No free hunch](http://blog.kaggle.com/) is the official Kaggle blog, where you can find tutorials and resources on Kaggle competitions
