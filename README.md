@@ -1,6 +1,8 @@
-# #13 BRUG: HypoSteelClosure (05.10.2016 @ Europace AG)
+# #13 BRUG: HypoSteelClosure (05.10.2016 @ Europace AG) 
 
-Hey guys and grils,
+## Presentation Slides on closures
+
+Hey guys and girls,
 
 here you can find the slides to the short talk about closures in R that I gave at the 13th R user group meeting.
 
@@ -10,8 +12,9 @@ here you can find the slides to the short talk about closures in R that I gave a
 ### Books
 
 -  [An Introduction to Statistical Learning with applications in R](http://www-bcf.usc.edu/~gareth/ISL/) (free book by T. Hastie & R. Tibshirani)
-- [The Elements of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/) (free [more mathy] book by T. Hastie & R. Tibshirani)
+- [The Elements of Statistical Learning](http://statweb.stanford.edu/~tibs/ElemStatLearn/) (free book by T. Hastie & R. Tibshirani [focuses more on the mathy side of things])
 
-### MOOCS
+### MOOCS & online learning
 
 - [Statistical Learning](https://lagunita.stanford.edu/courses/HumanitiesSciences/StatLearning/Winter2016/about) (also by Hastie & Tibshirani)
+- [Datacamp](https://www.datacamp.com/) 
